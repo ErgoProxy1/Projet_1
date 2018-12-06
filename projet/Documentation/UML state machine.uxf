@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>686</x>
+      <y>35</y>
+      <w>126</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>INIT
+--
+Affiche nom 
+
+-.
+Attendre 3 secondes 
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>497</x>
+      <y>217</y>
+      <w>161</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>TURN_SEQUENCE
+--
+if(isFirstTurn)
+{
+gestionMoteurTS(isFirstTurn); 
+isFirstTurn = false; 
+state = SCAN; 
+isScan = true; 
+
+}  
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>833</x>
+      <y>763</y>
+      <w>189</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>TRANSMISSION RS232
+--
+Transmet les données par RS232 sans 
+passé par la mémoire 
+
+L'envoie se fait avec des @ et doit 
+représenté les mesures prise. Des ||
+représentent la ligne de référence. 
+
+-.
+Del clignote deux fois seconde en vert 
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>742</x>
+      <y>105</y>
+      <w>140</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>812</x>
+      <y>126</y>
+      <w>42</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>427</y>
+      <w>112</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>140.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>602</x>
+      <y>329</y>
+      <w>231</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>310.0;150.0;190.0;160.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>595</x>
+      <y>189</y>
+      <w>224</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;40.0;210.0;20.0;300.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>707</x>
+      <y>448</y>
+      <w>63</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>Sensor = 0 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>546</x>
+      <y>658</y>
+      <w>490</w>
+      <h>245</h>
+    </coordinates>
+    <panel_attributes>Transmission 
+--
+
+valign=top
+
+symbol=substate</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>756</x>
+      <y>686</y>
+      <w>63</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>WAIT</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>693</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ Button interrupt</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>805</x>
+      <y>154</y>
+      <w>511</w>
+      <h>280</h>
+    </coordinates>
+    <panel_attributes>SCAN
+--
+Préalable 
+
+Le robot avance. Interreptuption 100ms est on. 
+Check and quel scan il est et ajuste la correction (scanState -&gt; correction = x) 
+
+While (state == scan)
+-.
+if(Pin == 0x1f &amp; scanState == 0) isScan = true; led = red; 
+
+-.
+if(Pin == 0x1f &amp; scanState == 2) isScan = false; led = off; state = AFFICHAGE 
+
+-.
+gestionMoteurScan(); //gerer l'ajustement du robot et avertie quand il ne detecte rien 
+-. 
+if(neDetecteRien)
+{
+state = TURN_SEQUENCE; 
+isScan = false
+scanState++; 
+}
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1344</x>
+      <y>224</y>
+      <w>140</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Correction est fait pour 
+que la mesure prise soit 
+entre la ligne de référence
+et les murs. 
+
+La correction est su avant 
+de faire le parcourt, donc 
+c'est arbitraire 
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>182</x>
+      <y>203</y>
+      <w>287</w>
+      <h>287</h>
+    </coordinates>
+    <panel_attributes>INTERRUPTS 
+--
+Interrupts (100 ms) 
+
+if(isScan) {
+getCanG; 
+getCanD; 
+}
+
+-.
+Interrupts(CAN complet) 
+{
+longueursDuParcourtG[index] = scanG + correction; 
+longueursDuParcourtD[index] = scanD - correction; 
+index++; 
+}
+
+-.
+
+interrupt button 
+if state transmission = do shit 
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>714</x>
+      <y>182</y>
+      <w>63</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>882</x>
+      <y>441</y>
+      <w>77</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes>Sensor = +++++</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>672</x>
+      <y>483</y>
+      <w>224</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>AFFICHAGE 
+--
+Calcul la longueur des murs 
+
+Affichage de la longueur de chaque mur 
+sur l'écran LCD. 
+
+Format : 
+GAUCHE: A cm 
+DROITE: B cm 
+
+Le résultat doit être arrondie à l'unité 
+près. </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>574</x>
+      <y>777</y>
+      <w>126</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>TRANSMISSION terminé 
+--
+Mélodie de 5 secondes 
+
+-.
+Led ambrée 
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>798</y>
+      <w>154</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+
+Transmission fini</panel_attributes>
+    <additional_attributes>200.0;20.0;10.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>693</y>
+      <w>161</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+
+                              Mélodie terminé</panel_attributes>
+    <additional_attributes>40.0;120.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>791</x>
+      <y>630</y>
+      <w>56</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;60.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>945</x>
+      <y>504</y>
+      <w>182</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Temps d'affichage sur l'écran LCD n'ai 
+pas précisé.
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>0</x>
+      <y>266</y>
+      <w>175</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Utilisation de vecteur pour les longueur 
+entre ligne de référence et mur 
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

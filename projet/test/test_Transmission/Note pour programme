@@ -1,0 +1,24 @@
+/*************************************************
+* Fichier : Note pour programme 
+* Auteur : Kevin Clapperton
+* Date : 1er Décembre 2018
+* Mise a jour : 3 decembre 2018
+* Description : Schéma pour la construction de la fonction de transfère 
+*************************************************/
+
+
+
+while (1) 
+	if(afficher) 
+	{
+		transmisionDeTableau(*tableau); //192 caratère de large 96 caratère haut 
+		jouerVersionModifier de asperge; max 5 sec //Vérifier que l'init est bien fait
+		afficher = false; 
+	} 
+	
+
+ISR(bouton)
+{
+	afficher = true; 
+}
+
