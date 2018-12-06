@@ -1,6 +1,6 @@
 /***********************************************
  * Fichier : delFuncs.cpp 
- * Auteur : Jafaar Kaoussarani
+ * Auteur : Jaafar Kaoussarani
  * Date : 15 novembre 2018 
  * Modifier par : Kevin Clapperton
  * Mise à jour : 3 décembre 2018
